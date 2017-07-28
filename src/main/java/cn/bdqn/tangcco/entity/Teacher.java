@@ -3,11 +3,27 @@ package cn.bdqn.tangcco.entity;
 public class Teacher {
     private Integer teacherId;
 
-    private Integer departmentId;
+    private Department department;
 
     private String teacherDesc;
 
-    private Integer userId;
+    private Tbuser tbuser;
+
+    private String teacherName;
+
+    public Teacher() {
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherId=" + teacherId +
+                ", department=" + department +
+                ", teacherDesc='" + teacherDesc + '\'' +
+                ", tbuser=" + tbuser +
+                ", teacherName='" + teacherName + '\'' +
+                '}';
+    }
 
     public Integer getTeacherId() {
         return teacherId;
@@ -17,12 +33,12 @@ public class Teacher {
         this.teacherId = teacherId;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getTeacherDesc() {
@@ -30,14 +46,30 @@ public class Teacher {
     }
 
     public void setTeacherDesc(String teacherDesc) {
-        this.teacherDesc = teacherDesc == null ? null : teacherDesc.trim();
+        this.teacherDesc = teacherDesc;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Tbuser getTbuser() {
+        return tbuser;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setTbuser(Tbuser tbuser) {
+        this.tbuser = tbuser;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public Teacher(Integer teacherId, Department department, String teacherDesc, Tbuser tbuser, String teacherName) {
+        this.teacherId = teacherId;
+        this.department = department;
+        this.teacherDesc = teacherDesc;
+        this.tbuser = tbuser;
+        this.teacherName = teacherName;
     }
 }

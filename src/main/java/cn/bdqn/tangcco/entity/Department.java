@@ -15,6 +15,30 @@ public class Department {
 
     private Date lastUpdate;
 
+    public Department() {
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "depId=" + depId +
+                ", schoolId=" + schoolId +
+                ", depName='" + depName + '\'' +
+                ", depDesc='" + depDesc + '\'' +
+                ", addTime=" + addTime +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
+
+    public Department(Integer depId, Integer schoolId, String depName, String depDesc, Date addTime, Date lastUpdate) {
+        this.depId = depId;
+        this.schoolId = schoolId;
+        this.depName = depName;
+        this.depDesc = depDesc;
+        this.addTime = addTime;
+        this.lastUpdate = lastUpdate;
+    }
+
     public Integer getDepId() {
         return depId;
     }

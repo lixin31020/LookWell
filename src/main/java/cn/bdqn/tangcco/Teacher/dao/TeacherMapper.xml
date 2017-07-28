@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.tangcco.Teacher.dao.TeacherMapper">
+    <resultMap id="teacherMap" type="cn.bdqn.tangcco.entity.Teacher">
+        <id column="teacher_id" property="teacherId"/>
+        <result column="teacher_desc" property="teacherDesc"/>
+        <result column="teacher_name" property="teacherName"/>
+        <association property="department" resultMap="departmentMap" javaType="cn.bdqn.tangcco.entity.Department"></association>
+        <association property="tbuser" resultMap="userMap" javaType="cn.bdqn.tangcco.entity.Tbuser"></association>
+    </resultMap>
+    <resultMap id="departmentMap" type="cn.bdqn.tangcco.entity.Department">
+        <id column="dep_id" property="depId"/>
+        <result column="dep_name" property="depName"/>
+        <result column="dep_desc" property="depDesc"/>
+        <result column="add_time" property="addTime"/>
+        <result column="last_update" property="lastUpdate"/>
+    </resultMap>
+    <resultMap id="userMap" type="cn.bdqn.tangcco.entity.Tbuser">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="last_login" property="lastLogin"/>
+    </resultMap>
+    <select id="queryCountTeacher" resultType="Integer">
+        select count(*) from teacher
+        <if test="teacherName!=null">
+          WHERE teacher_name LIKE concat('%',#{teacherName},'%')
+        </if>
+    </select>
+    <select id="queryTeacherByName" resultMap="teacherMap">
+        SELECT  dt.dep_name,dt.dep_desc,tr.teacher_desc,tur.user_name,tur.password
+        FROM teacher tr,department dt,tbuser tur
+        WHERE dt.dep_id=tr.department_id
+        AND tur.user_id=tr.user_id
+        ORDER BY teacher_id DESC
+        limit #{start},#{rows}
+    </select>
+</mapper>
