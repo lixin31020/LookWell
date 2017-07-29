@@ -37,4 +37,24 @@
         ORDER BY teacher_id DESC
         limit #{start},#{rows}
     </select>
+    <insert id="addTeacher" parameterType="Teacher">
+        INSERT INTO teacher VALUES(NULL,#{department.depId},#{teacherDesc},#{tbuser.userId},#{teacherName})
+    </insert>
+    <delete id="deleteTeacher" parameterType="Integer">
+        DELETE FROM teacher WHERE teacher_id=#{teacherId}
+    </delete>
+    <select id="queryTeacher" resultMap="teacherMap" parameterType="Integer">
+        SELECT  dt.dep_name,dt.dep_desc,tr.teacher_desc,tur.user_name,tur.password
+        FROM teacher tr,department dt,tbuser tur
+        WHERE dt.dep_id=tr.department_id
+        AND tur.user_id=tr.user_id
+        AND teacher_id=#{teacherId}
+    </select>
+    <update id="updateTeacher" parameterType="cn.bdqn.tangcco.entity.Teacher">
+        UPDATE teacher SET
+        department_id=#{department.depId},
+        teacher_desc=#{teacherDesc},
+        teacher_name=#{teacherName}
+        WHERE teacher_id=#{teacherId}
+    </update>
 </mapper>

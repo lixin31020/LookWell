@@ -11,4 +11,8 @@ import java.util.List;
 public interface TeacherMapper {
     public Integer queryCountTeacher(@Param ("teacherName") String teacherName);
     public List<Teacher> queryTeacherByName(@Param ("start") Integer start, @Param ("rows") Integer rows, @Param ("gradeName") String gradeName);
+    public Integer addTeacher(Teacher teacher);
+    public Integer deleteTeacher(@Param ("teacherId") Integer teacherId);
+    public Teacher queryTeacher(@Param ("teacherId") Integer teacherId);
+    public Integer updateTeacher(Teacher teacher);
 }
